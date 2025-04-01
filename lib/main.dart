@@ -1,3 +1,5 @@
+import 'package:app_monster/screens/register_screen.dart';
+import 'package:firebase_app_check/firebase_app_check.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:connectivity_plus/connectivity_plus.dart';
@@ -8,6 +10,7 @@ import 'package:app_monster/screens/menu_screen.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
+  await FirebaseAppCheck.instance.activate();
   runApp(MyApp());
 }
 
@@ -22,6 +25,7 @@ class MyApp extends StatelessWidget {
         'login': (context) => LoginScreen(),
         'menu': (context) => MenuScreen(),
         'error': (context) => NoConnectionScreen(),
+        'register': (context) => RegisterScreen()
       },
     );
   }

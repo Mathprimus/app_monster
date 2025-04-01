@@ -76,7 +76,9 @@ class _LoginScreenState extends State<LoginScreen> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       TextButton(
-                          onPressed: () {},
+                          onPressed: () {
+                            Navigator.pushNamed(context, 'register');
+                          },
                           child: const Text(
                             "Criar conta",
                             style: TextStyle(color: Colors.white),
