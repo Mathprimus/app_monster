@@ -98,9 +98,8 @@ class _LoadingScreenState extends State<LoadingScreen> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 SizedBox(
-                  width: size.width * 1, // Limita o tamanho da imagem
-                  height: size.height *
-                      0.5, // Evita que a imagem ocupe espaço demais
+                  width: size.width * 0.8, // No máximo 80% da largura
+                  height: size.height * 0.5 > 250 ? 250 : size.height * 0.5,
                   child: Image.asset(
                     "assets/images/MonterRankingThumbs.png",
                     fit: BoxFit.contain,
@@ -113,7 +112,8 @@ class _LoadingScreenState extends State<LoadingScreen> {
                 Text(
                   "Verificando conexão...",
                   style: TextStyle(
-                      fontSize: 18,
+                      fontSize:
+                          size.width * 0.045 > 14 ? size.width * 0.045 : 14,
                       fontWeight: FontWeight.bold,
                       color: Colors.white),
                 ),
@@ -151,7 +151,7 @@ class NoConnectionScreen extends StatelessWidget {
                 Text(
                   "Sem conexão com a internet",
                   style: TextStyle(
-                    fontSize: size.width * 0.05,
+                    fontSize: size.width * 0.05 > 16 ? size.width * 0.05 : 16,
                     fontWeight: FontWeight.bold,
                     color: Colors.white,
                   ),
@@ -159,9 +159,8 @@ class NoConnectionScreen extends StatelessWidget {
                 ),
                 SizedBox(height: size.height * 0.02),
                 SizedBox(
-                  width: size.width * 1, // Limita o tamanho da imagem
-                  height: size.height *
-                      0.5, // Evita que a imagem ocupe espaço demais
+                  width: size.width * 0.8, // Limita o tamanho da imagem
+                  height: size.height * 0.5 > 250 ? 250 : size.height * 0.5,
                   child: Image.asset(
                     "assets/images/MonsterRankingSemConexao.png",
                     fit: BoxFit.contain,
@@ -186,7 +185,8 @@ class NoConnectionScreen extends StatelessWidget {
                     child: Text(
                       "Tentar novamente",
                       style: TextStyle(
-                        fontSize: size.width * 0.045,
+                        fontSize:
+                            size.width * 0.045 > 14 ? size.width * 0.045 : 14,
                         color: Colors.white,
                         fontWeight: FontWeight.bold,
                       ),
