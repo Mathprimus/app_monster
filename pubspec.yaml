@@ -66,6 +66,7 @@ flutter:
   assets:
   - assets/images/MonsterRankingLogo.png
   - assets/images/MonsterRankingSemConexao.png
+  - assets/images/MonterRankingThumbs.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/to/resolution-aware-images

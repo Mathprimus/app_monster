@@ -67,7 +67,7 @@ class _LoadingScreenState extends State<LoadingScreen> {
           await _checkRealInternetConnection(); // Teste real da internet
     }
 
-    Future.delayed(Duration(seconds: 2), () {
+    Future.delayed(Duration(seconds: 1), () {
       if (isConnected) {
         print("🔄 Navegando para a tela de login...");
         Navigator.pushReplacementNamed(context, 'login');
@@ -80,6 +80,7 @@ class _LoadingScreenState extends State<LoadingScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final size = MediaQuery.of(context).size;
     return Container(
       decoration: const BoxDecoration(
         gradient: LinearGradient(
@@ -96,6 +97,15 @@ class _LoadingScreenState extends State<LoadingScreen> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
+                SizedBox(
+                  width: size.width * 1, // Limita o tamanho da imagem
+                  height: size.height *
+                      0.5, // Evita que a imagem ocupe espaço demais
+                  child: Image.asset(
+                    "assets/images/MonterRankingThumbs.png",
+                    fit: BoxFit.contain,
+                  ),
+                ),
                 CircularProgressIndicator(
                   color: Colors.white,
                 ),
