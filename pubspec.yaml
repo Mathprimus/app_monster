@@ -41,6 +41,9 @@ dependencies:
   connectivity_plus: ^6.1.3
   http: ^1.3.0
   firebase_app_check: ^0.3.2+5
+  email_validator: ^3.0.0
+  mask_text_input_formatter: ^2.9.0
+  brasil_fields: ^1.17.0
 
 dev_dependencies:
   flutter_test:
