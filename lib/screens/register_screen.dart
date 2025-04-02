@@ -215,53 +215,57 @@ class _RegisterScreenState extends State<RegisterScreen> {
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
     return Container(
-      decoration: const BoxDecoration(
-        gradient: LinearGradient(
-          colors: [Color(0xFF1393D7), Color(0xFF0C0E10)],
-          begin: Alignment.topLeft,
-          end: Alignment.bottomRight,
+        decoration: const BoxDecoration(
+          gradient: LinearGradient(
+            colors: [Color(0xFF1393D7), Color(0xFF0C0E10)],
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight,
+          ),
         ),
-      ),
-      child: Scaffold(
-        backgroundColor: Colors.transparent,
-        appBar: PreferredSize(
-          preferredSize: Size.fromHeight(kToolbarHeight),
-          child: Container(
-            decoration: const BoxDecoration(color: Colors.transparent),
-            child: AppBar(
-              title: Text(
-                "Cadastro",
-                style: TextStyle(color: Colors.white),
+        child: Scaffold(
+          backgroundColor: Colors.transparent,
+          resizeToAvoidBottomInset: false, // Impede que os botões subam
+          appBar: PreferredSize(
+            preferredSize: Size.fromHeight(kToolbarHeight),
+            child: Container(
+              decoration: const BoxDecoration(color: Colors.transparent),
+              child: AppBar(
+                title: Text(
+                  "Cadastro",
+                  style: TextStyle(color: Colors.white),
+                ),
+                backgroundColor: Colors.transparent,
+                elevation: 0,
               ),
-              backgroundColor: Colors.transparent,
-              elevation: 0,
             ),
           ),
-        ),
-        body: Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Column(
-            children: [
-              Expanded(
-                child: PageView(
-                  controller: _pageController,
-                  physics:
-                      NeverScrollableScrollPhysics(), // Impede arrastar manualmente
-                  onPageChanged: (index) =>
-                      setState(() => _currentPage = index),
-                  children: [
-                    _buildNomeEmailPage(),
-                    _buildEnderecoPage(),
-                    _buildSenhaPage(),
-                  ],
-                ),
+          body: GestureDetector(
+            onTap: () => FocusScope.of(context)
+                .unfocus(), // Fecha o teclado ao tocar fora
+            child: SingleChildScrollView(
+              child: Column(
+                children: [
+                  SizedBox(
+                    height: MediaQuery.of(context).size.height *
+                        0.75, // Define altura fixa para a PageView
+                    child: PageView(
+                      controller: _pageController,
+                      physics: NeverScrollableScrollPhysics(),
+                      onPageChanged: (index) =>
+                          setState(() => _currentPage = index),
+                      children: [
+                        _buildNomeEmailPage(),
+                        _buildEnderecoPage(),
+                        _buildSenhaPage(),
+                      ],
+                    ),
+                  ),
+                  _buildNavigationButtons(),
+                ],
               ),
-              _buildNavigationButtons(),
-            ],
+            ),
           ),
-        ),
-      ),
-    );
+        ));
   }
 
   Widget _buildNomeEmailPage() {
@@ -673,23 +677,57 @@ class _RegisterScreenState extends State<RegisterScreen> {
     return Padding(
       padding: EdgeInsets.all(16.0),
       child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           if (_currentPage > 0)
             ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                backgroundColor: const Color.fromARGB(
+                    255, 92, 91, 91), // Azul escuro da tela
+                foregroundColor: Colors.white, // Cor do texto
+                shape: RoundedRectangleBorder(
+                  borderRadius:
+                      BorderRadius.circular(8), // Deixa menos arredondado
+                ),
+                padding: EdgeInsets.symmetric(
+                    horizontal: 24, vertical: 12), // Ajuste no tamanho
+              ),
               onPressed: () => _pageController.previousPage(
                 duration: Duration(milliseconds: 300),
                 curve: Curves.easeInOut,
               ),
               child: Text("Voltar"),
             ),
+          Spacer(), // Empurra o botão "Próximo" para a direita
           if (_currentPage < 2)
             ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                backgroundColor: const Color.fromARGB(
+                    255, 92, 91, 91), // Azul escuro da tela
+                foregroundColor: Colors.white, // Cor do texto
+                shape: RoundedRectangleBorder(
+                  borderRadius:
+                      BorderRadius.circular(8), // Deixa menos arredondado
+                ),
+                padding: EdgeInsets.symmetric(
+                    horizontal: 24, vertical: 12), // Ajuste no tamanho
+              ),
               onPressed: () => _proximoPasso(_currentPage),
               child: Text("Próximo"),
             ),
+
           if (_currentPage == 2)
             ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                backgroundColor: const Color.fromARGB(
+                    255, 92, 91, 91), // Azul escuro da tela
+                foregroundColor: Colors.white, // Cor do texto
+                shape: RoundedRectangleBorder(
+                  borderRadius:
+                      BorderRadius.circular(8), // Deixa menos arredondado
+                ),
+                padding: EdgeInsets.symmetric(
+                    horizontal: 24, vertical: 12), // Ajuste no tamanho
+              ),
               onPressed: _cadastrarUsuario,
               child: Text("Finalizar Cadastro"),
             ),
