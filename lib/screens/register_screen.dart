@@ -213,103 +213,190 @@ class _RegisterScreenState extends State<RegisterScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: Text("Cadastro")),
-      body: Column(
-        children: [
-          Expanded(
-            child: PageView(
-              controller: _pageController,
-              physics:
-                  NeverScrollableScrollPhysics(), // Impede arrastar manualmente
-              onPageChanged: (index) => setState(() => _currentPage = index),
-              children: [
-                _buildNomeEmailPage(),
-                _buildEnderecoPage(),
-                _buildSenhaPage(),
-              ],
+    final size = MediaQuery.of(context).size;
+    return Container(
+      decoration: const BoxDecoration(
+        gradient: LinearGradient(
+          colors: [Color(0xFF1393D7), Color(0xFF0C0E10)],
+          begin: Alignment.topLeft,
+          end: Alignment.bottomRight,
+        ),
+      ),
+      child: Scaffold(
+        backgroundColor: Colors.transparent,
+        appBar: PreferredSize(
+          preferredSize: Size.fromHeight(kToolbarHeight),
+          child: Container(
+            decoration: const BoxDecoration(color: Colors.transparent),
+            child: AppBar(
+              title: Text(
+                "Cadastro",
+                style: TextStyle(color: Colors.white),
+              ),
+              backgroundColor: Colors.transparent,
+              elevation: 0,
             ),
           ),
-          _buildNavigationButtons(),
-        ],
+        ),
+        body: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Column(
+            children: [
+              Expanded(
+                child: PageView(
+                  controller: _pageController,
+                  physics:
+                      NeverScrollableScrollPhysics(), // Impede arrastar manualmente
+                  onPageChanged: (index) =>
+                      setState(() => _currentPage = index),
+                  children: [
+                    _buildNomeEmailPage(),
+                    _buildEnderecoPage(),
+                    _buildSenhaPage(),
+                  ],
+                ),
+              ),
+              _buildNavigationButtons(),
+            ],
+          ),
+        ),
       ),
     );
   }
 
   Widget _buildNomeEmailPage() {
-    return SingleChildScrollView(
-      child: Padding(
-        padding: EdgeInsets.all(16.0),
-        child: Form(
-          key: _formKeyNomeEmail,
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              TextFormField(
-                controller: nomeController,
-                decoration: InputDecoration(labelText: "Nome"),
-                maxLength: 150,
-                validator: (value) {
-                  if (value == null || value.isEmpty) {
-                    return "Nome obrigatório";
-                  }
-                  if (!_validarNome(value)) {
-                    return "Nome inválido (somente letras e até 150 caracteres)";
-                  }
-                  return null;
-                },
-              ),
-              TextFormField(
-                controller: emailController,
-                decoration: InputDecoration(labelText: "E-mail"),
-                keyboardType: TextInputType.emailAddress,
-                validator: (value) {
-                  if (value == null || value.isEmpty) {
-                    return "E-mail obrigatório";
-                  }
-                  if (!EmailValidator.validate(value)) {
-                    return "E-mail inválido";
-                  }
-                  return null;
-                },
-              ),
-              TextFormField(
-                controller: cpfController,
-                decoration: InputDecoration(labelText: "CPF"),
-                inputFormatters: [cpfFormatter],
-                keyboardType: TextInputType.number,
-                validator: (value) {
-                  if (value == null || value.isEmpty) {
-                    return "CPF obrigatório";
-                  }
-                  if (!_validarCPF(value)) {
-                    return "CPF inválido";
-                  }
-                  return null;
-                },
-              ),
-              TextFormField(
-                controller: telefoneController,
-                decoration: InputDecoration(labelText: "Telefone"),
-                inputFormatters: [telefoneFormatter],
-                keyboardType: TextInputType.phone,
-                validator: (value) {
-                  if (value == null || value.isEmpty) {
-                    return "Telefone obrigatório";
-                  }
-                  if (value.length < 14) {
-                    return "Telefone inválido";
-                  }
-                  return null;
-                },
-              ),
-              SizedBox(height: 20),
-              ElevatedButton(
-                onPressed: () =>
-                    _proximoPasso(0), // ou 1, 2, conforme a página atual
-                child: Text("Próximo"),
-              ),
-            ],
+    return Container(
+      decoration: const BoxDecoration(color: Colors.transparent),
+      child: SingleChildScrollView(
+        child: Padding(
+          padding: EdgeInsets.all(16.0),
+          child: Form(
+            key: _formKeyNomeEmail,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                TextFormField(
+                  controller: nomeController,
+                  style: TextStyle(color: Colors.white),
+                  decoration: InputDecoration(
+                    labelText: "Nome",
+                    labelStyle: TextStyle(color: Colors.white),
+                    floatingLabelStyle: TextStyle(color: Colors.white),
+                    enabledBorder: UnderlineInputBorder(
+                      borderSide: BorderSide(
+                          color: Colors
+                              .white), // Cor da borda quando não está focado
+                    ),
+                    focusedBorder: OutlineInputBorder(
+                      borderSide: BorderSide(
+                          color:
+                              Colors.white), // Cor da borda quando está focado
+                    ),
+                  ),
+                  maxLength: 150,
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return "Nome obrigatório";
+                    }
+                    if (!_validarNome(value)) {
+                      return "Nome inválido (somente letras e até 150 caracteres)";
+                    }
+                    return null;
+                  },
+                ),
+                TextFormField(
+                  controller: emailController,
+                  style: TextStyle(color: Colors.white),
+                  decoration: InputDecoration(
+                    labelText: "E-mail",
+                    labelStyle: TextStyle(color: Colors.white),
+                    floatingLabelStyle: TextStyle(color: Colors.white),
+                    enabledBorder: UnderlineInputBorder(
+                      borderSide: BorderSide(
+                          color: Colors
+                              .white), // Cor da borda quando não está focado
+                    ),
+                    focusedBorder: OutlineInputBorder(
+                      borderSide: BorderSide(
+                          color:
+                              Colors.white), // Cor da borda quando está focado
+                    ),
+                  ),
+                  keyboardType: TextInputType.emailAddress,
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return "E-mail obrigatório";
+                    }
+                    if (!EmailValidator.validate(value)) {
+                      return "E-mail inválido";
+                    }
+                    return null;
+                  },
+                ),
+                SizedBox(height: 20),
+                TextFormField(
+                  controller: cpfController,
+                  style: TextStyle(color: Colors.white),
+                  decoration: InputDecoration(
+                    labelText: "CPF",
+                    labelStyle: TextStyle(color: Colors.white),
+                    floatingLabelStyle: TextStyle(color: Colors.white),
+                    enabledBorder: UnderlineInputBorder(
+                      borderSide: BorderSide(
+                          color: Colors
+                              .white), // Cor da borda quando não está focado
+                    ),
+                    focusedBorder: OutlineInputBorder(
+                      borderSide: BorderSide(
+                          color:
+                              Colors.white), // Cor da borda quando está focado
+                    ),
+                  ),
+                  inputFormatters: [cpfFormatter],
+                  keyboardType: TextInputType.number,
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return "CPF obrigatório";
+                    }
+                    if (!_validarCPF(value)) {
+                      return "CPF inválido";
+                    }
+                    return null;
+                  },
+                ),
+                SizedBox(height: 20),
+                TextFormField(
+                  controller: telefoneController,
+                  style: TextStyle(color: Colors.white),
+                  decoration: InputDecoration(
+                    labelText: "Telefone",
+                    labelStyle: TextStyle(color: Colors.white),
+                    floatingLabelStyle: TextStyle(color: Colors.white),
+                    enabledBorder: UnderlineInputBorder(
+                      borderSide: BorderSide(
+                          color: Colors
+                              .white), // Cor da borda quando não está focado
+                    ),
+                    focusedBorder: OutlineInputBorder(
+                      borderSide: BorderSide(
+                          color:
+                              Colors.white), // Cor da borda quando está focado
+                    ),
+                  ),
+                  inputFormatters: [telefoneFormatter],
+                  keyboardType: TextInputType.phone,
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return "Telefone obrigatório";
+                    }
+                    if (value.length < 14) {
+                      return "Telefone inválido";
+                    }
+                    return null;
+                  },
+                ),
+              ],
+            ),
           ),
         ),
       ),
