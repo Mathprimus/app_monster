@@ -34,6 +34,19 @@ class _RegisterScreenState extends State<RegisterScreen> {
 
   bool _senhaVisivel = false;
   bool _confirmarSenhaVisivel = false;
+  bool temLetraMaiuscula = false;
+  bool temNumero = false;
+  bool temCaractereEspecial = false;
+  bool tamanhoMinimo = false;
+
+  void _validarSenhaAoDigitar(String senha) {
+    setState(() {
+      temLetraMaiuscula = senha.contains(RegExp(r'[A-Z]'));
+      temNumero = senha.contains(RegExp(r'[0-9]'));
+      temCaractereEspecial = senha.contains(RegExp(r'[!@#\$%^&*(),.?":{}|<>]'));
+      tamanhoMinimo = senha.length >= 8;
+    });
+  }
 
   String? _validarSenha(String? senha) {
     if (senha == null || senha.isEmpty) return "Senha obrigatória";
@@ -611,13 +624,10 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   labelStyle: TextStyle(color: Colors.white),
                   floatingLabelStyle: TextStyle(color: Colors.white),
                   enabledBorder: UnderlineInputBorder(
-                    borderSide: BorderSide(
-                        color: Colors
-                            .white), // Cor da borda quando não está focado
+                    borderSide: BorderSide(color: Colors.white),
                   ),
                   focusedBorder: OutlineInputBorder(
-                    borderSide: BorderSide(
-                        color: Colors.white), // Cor da borda quando está focado
+                    borderSide: BorderSide(color: Colors.white),
                   ),
                   suffixIcon: IconButton(
                     icon: Icon(_senhaVisivel
@@ -632,8 +642,11 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   ),
                 ),
                 obscureText: !_senhaVisivel,
+                onChanged: _validarSenhaAoDigitar,
                 validator: _validarSenha,
               ),
+              SizedBox(height: 10),
+              _buildVerificadoresDeSenha(),
               SizedBox(height: 20),
               TextFormField(
                 controller: confirmarSenhaController,
@@ -643,13 +656,10 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   labelStyle: TextStyle(color: Colors.white),
                   floatingLabelStyle: TextStyle(color: Colors.white),
                   enabledBorder: UnderlineInputBorder(
-                    borderSide: BorderSide(
-                        color: Colors
-                            .white), // Cor da borda quando não está focado
+                    borderSide: BorderSide(color: Colors.white),
                   ),
                   focusedBorder: OutlineInputBorder(
-                    borderSide: BorderSide(
-                        color: Colors.white), // Cor da borda quando está focado
+                    borderSide: BorderSide(color: Colors.white),
                   ),
                   suffixIcon: IconButton(
                     icon: Icon(_confirmarSenhaVisivel
@@ -670,6 +680,34 @@ class _RegisterScreenState extends State<RegisterScreen> {
           ),
         ),
       ),
+    );
+  }
+
+  Widget _buildVerificadoresDeSenha() {
+    return Column(
+      children: [
+        _buildVerificador("Letra maiúscula", temLetraMaiuscula),
+        _buildVerificador("Número", temNumero),
+        _buildVerificador("Caractere especial", temCaractereEspecial),
+        _buildVerificador("Mínimo 8 caracteres", tamanhoMinimo),
+      ],
+    );
+  }
+
+  Widget _buildVerificador(String criterio, bool valido) {
+    return Row(
+      children: [
+        Icon(
+          valido ? Icons.check_circle : Icons.cancel,
+          color: valido ? Colors.green : Colors.red,
+          size: 20,
+        ),
+        SizedBox(width: 8),
+        Text(
+          criterio,
+          style: TextStyle(color: Colors.white),
+        ),
+      ],
     );
   }
 
