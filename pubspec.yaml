@@ -71,6 +71,7 @@ flutter:
 
   # To add assets to your application, add an assets section, like this:
   assets:
+  - assets/images/
   - assets/images/MonsterRankingLogo.png
   - assets/images/MonsterRankingSemConexao.png
   - assets/images/MonterRankingThumbs.png

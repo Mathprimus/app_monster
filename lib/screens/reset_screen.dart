@@ -9,61 +9,147 @@ class ResetScreen extends StatefulWidget {
 class _ResetScreenState extends State<ResetScreen> {
   final FirebaseAuth _auth = FirebaseAuth.instance;
   final TextEditingController _emailController = TextEditingController();
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   bool _isLoading = false;
 
   Future<void> _resetarSenha() async {
-    String email = _emailController.text.trim();
-
-    if (email.isEmpty) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('Por favor, insira um e-mail válido!')),
-      );
-      return;
-    }
+    if (!_formKey.currentState!.validate()) return;
 
     setState(() => _isLoading = true);
 
     try {
-      await _auth.sendPasswordResetEmail(email: email);
-      print("✅ E-mail de redefinição de senha enviado!");
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-            content: Text(
-                'E-mail de redefinição de senha enviado! Verifique sua caixa de entrada.')),
-      );
+      await _auth.sendPasswordResetEmail(email: _emailController.text.trim());
+      _showSuccessDialog();
       _emailController.clear();
     } catch (error) {
-      print("❌ Erro ao enviar e-mail: $error");
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('Erro ao enviar e-mail: $error')),
-      );
+      _showErrorSnackBar("Erro ao enviar e-mail: $error");
     }
 
     setState(() => _isLoading = false);
   }
 
+  void _showSuccessDialog() {
+    showDialog(
+      context: context,
+      builder: (context) => AlertDialog(
+        title: Text("E-mail enviado!"),
+        content:
+            Text("Verifique sua caixa de entrada para redefinir sua senha."),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.pop(context),
+            child: Text("OK"),
+          ),
+        ],
+      ),
+    );
+  }
+
+  void _showErrorSnackBar(String message) {
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(content: Text(message)),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: Text('Resetar Senha')),
-      body: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            TextField(
-              controller: _emailController,
-              keyboardType: TextInputType.emailAddress,
-              decoration: InputDecoration(labelText: 'E-mail'),
-            ),
-            SizedBox(height: 20),
-            _isLoading
-                ? Center(child: CircularProgressIndicator())
-                : ElevatedButton(
-                    onPressed: _resetarSenha,
-                    child: Text('Enviar E-mail de Redefinição'),
-                  ),
-          ],
+    final size = MediaQuery.of(context).size;
+
+    return Container(
+      decoration: const BoxDecoration(
+        gradient: LinearGradient(
+          colors: [Color(0xFF0C0E10), Color(0xFF1393D7)],
+          begin: Alignment.topLeft,
+          end: Alignment.bottomRight,
+        ),
+      ),
+      child: Scaffold(
+        backgroundColor: Colors.transparent,
+        resizeToAvoidBottomInset: true, // Permite que o teclado empurre a tela
+        appBar: AppBar(
+          iconTheme: IconThemeData(color: Colors.white),
+          title: Text('Resetar Senha', style: TextStyle(color: Colors.white)),
+          backgroundColor: Colors.transparent,
+        ),
+        body: LayoutBuilder(
+          builder: (context, constraints) {
+            return SingleChildScrollView(
+              child: Padding(
+                padding: EdgeInsets.symmetric(horizontal: size.width * 0.08),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    SizedBox(height: constraints.maxHeight * 0.05),
+                    SizedBox(
+                      height: constraints.maxHeight * 0.5,
+                      child:
+                          Image.asset("assets/images/MonsterRankingReset.png"),
+                    ),
+                    SizedBox(height: 20),
+                    Text(
+                      "Informe seu e-mail para receber um link de redefinição de senha.",
+                      textAlign: TextAlign.center,
+                      style: TextStyle(color: Colors.white, fontSize: 16),
+                    ),
+                    SizedBox(height: 20),
+                    Form(
+                      key: _formKey,
+                      child: TextFormField(
+                        controller: _emailController,
+                        style: TextStyle(color: Colors.white),
+                        keyboardType: TextInputType.emailAddress,
+                        decoration: InputDecoration(
+                          labelText: 'E-mail',
+                          labelStyle: TextStyle(color: Colors.white),
+                          floatingLabelStyle: TextStyle(color: Colors.white),
+                          prefixIcon: Icon(Icons.email, color: Colors.white),
+                          enabledBorder: UnderlineInputBorder(
+                            borderSide: BorderSide(color: Colors.white),
+                          ),
+                          focusedBorder: OutlineInputBorder(
+                            borderSide: BorderSide(color: Colors.white),
+                          ),
+                        ),
+                        validator: (value) {
+                          if (value == null || value.trim().isEmpty) {
+                            return 'Por favor, insira um e-mail.';
+                          }
+                          if (!RegExp(
+                                  r"^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$")
+                              .hasMatch(value)) {
+                            return 'E-mail inválido!';
+                          }
+                          return null;
+                        },
+                      ),
+                    ),
+                    SizedBox(height: 20),
+                    _isLoading
+                        ? CircularProgressIndicator()
+                        : SizedBox(
+                            width: double.infinity,
+                            height: constraints.maxHeight *
+                                0.07, // Ajusta altura do botão
+                            child: ElevatedButton(
+                              onPressed: _resetarSenha,
+                              style: ElevatedButton.styleFrom(
+                                backgroundColor: Colors.white,
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(30),
+                                ),
+                              ),
+                              child: Text(
+                                'Enviar E-mail de Redefinição',
+                                style: TextStyle(color: Colors.black),
+                              ),
+                            ),
+                          ),
+                    SizedBox(height: constraints.maxHeight * 0.05),
+                  ],
+                ),
+              ),
+            );
+          },
         ),
       ),
     );
