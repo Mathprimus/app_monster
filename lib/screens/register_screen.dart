@@ -281,6 +281,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   decoration: InputDecoration(
                     labelText: "Nome",
                     labelStyle: TextStyle(color: Colors.white),
+                    counterStyle: TextStyle(color: Colors.white),
                     floatingLabelStyle: TextStyle(color: Colors.white),
                     enabledBorder: UnderlineInputBorder(
                       borderSide: BorderSide(
