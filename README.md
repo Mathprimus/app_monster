@@ -1,16 +1,32 @@
-# app_monster
+# Monster Ranking
 
-A new Flutter project.
+## Description
+Monster Ranking is an application developed to increase interaction among members of the Corpo Atlético gym. It offers challenges that generate points, allowing the formation of a ranking among participants. The goal is to make the gym experience more engaging and fun.
 
-## Getting Started
+## Technologies Used
+- **Flutter**: For app development.
+- **Firebase**: For authentication, database, and storage.
 
-This project is a starting point for a Flutter application.
+## Features
+- **Ranking**: Updated daily based on challenge points.
+- **Weekly/Monthly Challenges**: Created by developers, with the possibility of future expansion to gym staff-created challenges.
+- **Points System**: Users earn points by completing challenges.
+- **Profile Customization**: Ability to change photo and name (Google login).
 
-A few resources to get you started if this is your first Flutter project:
+## App Structure
+The app consists of five main pages:
+1. **Home** - General presentation and daily highlights.
+2. **Challenges** - List of active challenges.
+3. **Ranking** - Display of general rankings and special votes.
+4. **Profile** - Edit name and photo, as well as view completed challenges.
+5. **Settings** - General app preferences.
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+## How to Run the Project
+Installation and execution instructions are yet to be defined.
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## Project Status
+This project is an academic assignment and is not currently open for external collaboration.
+
+## Author
+Project developed for academic purposes.
+
