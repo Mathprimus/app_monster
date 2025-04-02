@@ -418,6 +418,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 decoration: InputDecoration(
                   labelText: "CEP",
                   labelStyle: TextStyle(color: Colors.white),
+                  counterStyle: TextStyle(color: Colors.white),
                   floatingLabelStyle: TextStyle(color: Colors.white),
                   enabledBorder: UnderlineInputBorder(
                     borderSide: BorderSide(
@@ -448,6 +449,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 decoration: InputDecoration(
                   labelText: "Endereço",
                   labelStyle: TextStyle(color: Colors.white),
+                  counterStyle: TextStyle(color: Colors.white),
                   floatingLabelStyle: TextStyle(color: Colors.white),
                   enabledBorder: UnderlineInputBorder(
                     borderSide: BorderSide(
@@ -470,6 +472,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 decoration: InputDecoration(
                   labelText: "Número",
                   labelStyle: TextStyle(color: Colors.white),
+                  counterStyle: TextStyle(color: Colors.white),
                   floatingLabelStyle: TextStyle(color: Colors.white),
                   enabledBorder: UnderlineInputBorder(
                     borderSide: BorderSide(
@@ -493,6 +496,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 decoration: InputDecoration(
                   labelText: "Bairro",
                   labelStyle: TextStyle(color: Colors.white),
+                  counterStyle: TextStyle(color: Colors.white),
                   floatingLabelStyle: TextStyle(color: Colors.white),
                   enabledBorder: UnderlineInputBorder(
                     borderSide: BorderSide(
@@ -515,6 +519,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 decoration: InputDecoration(
                   labelText: "Cidade",
                   labelStyle: TextStyle(color: Colors.white),
+                  counterStyle: TextStyle(color: Colors.white),
                   floatingLabelStyle: TextStyle(color: Colors.white),
                   enabledBorder: UnderlineInputBorder(
                     borderSide: BorderSide(
@@ -537,6 +542,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 decoration: InputDecoration(
                   labelText: "UF",
                   labelStyle: TextStyle(color: Colors.white),
+                  counterStyle: TextStyle(color: Colors.white),
                   floatingLabelStyle: TextStyle(color: Colors.white),
                   enabledBorder: UnderlineInputBorder(
                     borderSide: BorderSide(
@@ -562,6 +568,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 decoration: InputDecoration(
                   labelText: "Complemento",
                   labelStyle: TextStyle(color: Colors.white),
+                  counterStyle: TextStyle(color: Colors.white),
                   floatingLabelStyle: TextStyle(color: Colors.white),
                   enabledBorder: UnderlineInputBorder(
                     borderSide: BorderSide(
