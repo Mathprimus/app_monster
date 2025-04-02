@@ -414,7 +414,21 @@ class _RegisterScreenState extends State<RegisterScreen> {
             children: [
               TextFormField(
                 controller: cepController,
-                decoration: InputDecoration(labelText: "CEP"),
+                style: TextStyle(color: Colors.white),
+                decoration: InputDecoration(
+                  labelText: "CEP",
+                  labelStyle: TextStyle(color: Colors.white),
+                  floatingLabelStyle: TextStyle(color: Colors.white),
+                  enabledBorder: UnderlineInputBorder(
+                    borderSide: BorderSide(
+                        color: Colors
+                            .white), // Cor da borda quando não está focado
+                  ),
+                  focusedBorder: OutlineInputBorder(
+                    borderSide: BorderSide(
+                        color: Colors.white), // Cor da borda quando está focado
+                  ),
+                ),
                 keyboardType: TextInputType.number,
                 inputFormatters: [cepFormatter],
                 maxLength: 9,
@@ -427,38 +441,113 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   if (value.length == 9) _buscarCEP();
                 },
               ),
+              SizedBox(height: 10),
               TextFormField(
                 controller: enderecoController,
-                decoration: InputDecoration(labelText: "Endereço"),
+                style: TextStyle(color: Colors.white),
+                decoration: InputDecoration(
+                  labelText: "Endereço",
+                  labelStyle: TextStyle(color: Colors.white),
+                  floatingLabelStyle: TextStyle(color: Colors.white),
+                  enabledBorder: UnderlineInputBorder(
+                    borderSide: BorderSide(
+                        color: Colors
+                            .white), // Cor da borda quando não está focado
+                  ),
+                  focusedBorder: OutlineInputBorder(
+                    borderSide: BorderSide(
+                        color: Colors.white), // Cor da borda quando está focado
+                  ),
+                ),
                 maxLength: 100,
                 validator: (value) =>
                     value!.isEmpty ? "Endereço obrigatório" : null,
               ),
+              SizedBox(height: 10),
               TextFormField(
                 controller: numeroController,
-                decoration: InputDecoration(labelText: "Número"),
+                style: TextStyle(color: Colors.white),
+                decoration: InputDecoration(
+                  labelText: "Número",
+                  labelStyle: TextStyle(color: Colors.white),
+                  floatingLabelStyle: TextStyle(color: Colors.white),
+                  enabledBorder: UnderlineInputBorder(
+                    borderSide: BorderSide(
+                        color: Colors
+                            .white), // Cor da borda quando não está focado
+                  ),
+                  focusedBorder: OutlineInputBorder(
+                    borderSide: BorderSide(
+                        color: Colors.white), // Cor da borda quando está focado
+                  ),
+                ),
                 keyboardType: TextInputType.number,
                 maxLength: 6,
                 validator: (value) =>
                     value!.isEmpty ? "Número obrigatório" : null,
               ),
+              SizedBox(height: 10),
               TextFormField(
                 controller: bairroController,
-                decoration: InputDecoration(labelText: "Bairro"),
+                style: TextStyle(color: Colors.white),
+                decoration: InputDecoration(
+                  labelText: "Bairro",
+                  labelStyle: TextStyle(color: Colors.white),
+                  floatingLabelStyle: TextStyle(color: Colors.white),
+                  enabledBorder: UnderlineInputBorder(
+                    borderSide: BorderSide(
+                        color: Colors
+                            .white), // Cor da borda quando não está focado
+                  ),
+                  focusedBorder: OutlineInputBorder(
+                    borderSide: BorderSide(
+                        color: Colors.white), // Cor da borda quando está focado
+                  ),
+                ),
                 maxLength: 50,
                 validator: (value) =>
                     value!.isEmpty ? "Bairro obrigatório" : null,
               ),
+              SizedBox(height: 10),
               TextFormField(
                 controller: cidadeController,
-                decoration: InputDecoration(labelText: "Cidade"),
+                style: TextStyle(color: Colors.white),
+                decoration: InputDecoration(
+                  labelText: "Cidade",
+                  labelStyle: TextStyle(color: Colors.white),
+                  floatingLabelStyle: TextStyle(color: Colors.white),
+                  enabledBorder: UnderlineInputBorder(
+                    borderSide: BorderSide(
+                        color: Colors
+                            .white), // Cor da borda quando não está focado
+                  ),
+                  focusedBorder: OutlineInputBorder(
+                    borderSide: BorderSide(
+                        color: Colors.white), // Cor da borda quando está focado
+                  ),
+                ),
                 maxLength: 50,
                 validator: (value) =>
                     value!.isEmpty ? "Cidade obrigatória" : null,
               ),
+              SizedBox(height: 10),
               TextFormField(
                 controller: ufController,
-                decoration: InputDecoration(labelText: "UF"),
+                style: TextStyle(color: Colors.white),
+                decoration: InputDecoration(
+                  labelText: "UF",
+                  labelStyle: TextStyle(color: Colors.white),
+                  floatingLabelStyle: TextStyle(color: Colors.white),
+                  enabledBorder: UnderlineInputBorder(
+                    borderSide: BorderSide(
+                        color: Colors
+                            .white), // Cor da borda quando não está focado
+                  ),
+                  focusedBorder: OutlineInputBorder(
+                    borderSide: BorderSide(
+                        color: Colors.white), // Cor da borda quando está focado
+                  ),
+                ),
                 maxLength: 2,
                 validator: (value) {
                   if (value == null || value.isEmpty) return "UF obrigatória";
@@ -469,17 +558,22 @@ class _RegisterScreenState extends State<RegisterScreen> {
               ),
               TextFormField(
                 controller: complementoController,
-                decoration: InputDecoration(labelText: "Complemento"),
+                style: TextStyle(color: Colors.white),
+                decoration: InputDecoration(
+                  labelText: "Complemento",
+                  labelStyle: TextStyle(color: Colors.white),
+                  floatingLabelStyle: TextStyle(color: Colors.white),
+                  enabledBorder: UnderlineInputBorder(
+                    borderSide: BorderSide(
+                        color: Colors
+                            .white), // Cor da borda quando não está focado
+                  ),
+                  focusedBorder: OutlineInputBorder(
+                    borderSide: BorderSide(
+                        color: Colors.white), // Cor da borda quando está focado
+                  ),
+                ),
                 maxLength: 100,
-              ),
-              SizedBox(height: 20),
-              ElevatedButton(
-                onPressed: () {
-                  if (_formKey.currentState!.validate()) {
-                    print("Endereço validado!");
-                  }
-                },
-                child: Text("Próximo"),
               ),
             ],
           ),
