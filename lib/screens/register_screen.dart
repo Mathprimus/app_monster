@@ -247,6 +247,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   "Cadastro",
                   style: TextStyle(color: Colors.white),
                 ),
+                iconTheme: IconThemeData(color: Colors.white),
                 backgroundColor: Colors.transparent,
                 elevation: 0,
               ),
