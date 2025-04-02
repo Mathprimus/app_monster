@@ -601,12 +601,25 @@ class _RegisterScreenState extends State<RegisterScreen> {
             children: [
               TextFormField(
                 controller: senhaController,
+                style: TextStyle(color: Colors.white),
                 decoration: InputDecoration(
                   labelText: "Senha",
+                  labelStyle: TextStyle(color: Colors.white),
+                  floatingLabelStyle: TextStyle(color: Colors.white),
+                  enabledBorder: UnderlineInputBorder(
+                    borderSide: BorderSide(
+                        color: Colors
+                            .white), // Cor da borda quando não está focado
+                  ),
+                  focusedBorder: OutlineInputBorder(
+                    borderSide: BorderSide(
+                        color: Colors.white), // Cor da borda quando está focado
+                  ),
                   suffixIcon: IconButton(
                     icon: Icon(_senhaVisivel
                         ? Icons.visibility
                         : Icons.visibility_off),
+                    color: Colors.white,
                     onPressed: () {
                       setState(() {
                         _senhaVisivel = !_senhaVisivel;
@@ -617,14 +630,28 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 obscureText: !_senhaVisivel,
                 validator: _validarSenha,
               ),
+              SizedBox(height: 20),
               TextFormField(
                 controller: confirmarSenhaController,
+                style: TextStyle(color: Colors.white),
                 decoration: InputDecoration(
                   labelText: "Confirmar Senha",
+                  labelStyle: TextStyle(color: Colors.white),
+                  floatingLabelStyle: TextStyle(color: Colors.white),
+                  enabledBorder: UnderlineInputBorder(
+                    borderSide: BorderSide(
+                        color: Colors
+                            .white), // Cor da borda quando não está focado
+                  ),
+                  focusedBorder: OutlineInputBorder(
+                    borderSide: BorderSide(
+                        color: Colors.white), // Cor da borda quando está focado
+                  ),
                   suffixIcon: IconButton(
                     icon: Icon(_confirmarSenhaVisivel
                         ? Icons.visibility
                         : Icons.visibility_off),
+                    color: Colors.white,
                     onPressed: () {
                       setState(() {
                         _confirmarSenhaVisivel = !_confirmarSenhaVisivel;
@@ -634,15 +661,6 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 ),
                 obscureText: !_confirmarSenhaVisivel,
                 validator: _validarConfirmacaoSenha,
-              ),
-              SizedBox(height: 20),
-              ElevatedButton(
-                onPressed: () {
-                  if (_formKey.currentState!.validate()) {
-                    print("Senha validada com sucesso!");
-                  }
-                },
-                child: Text("Próximo"),
               ),
             ],
           ),
