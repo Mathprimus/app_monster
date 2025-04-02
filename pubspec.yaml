@@ -44,6 +44,8 @@ dependencies:
   email_validator: ^3.0.0
   mask_text_input_formatter: ^2.9.0
   brasil_fields: ^1.17.0
+  emailjs: ^4.0.0
+  shared_preferences: ^2.5.2
 
 dev_dependencies:
   flutter_test:

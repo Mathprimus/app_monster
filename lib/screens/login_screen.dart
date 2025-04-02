@@ -102,7 +102,9 @@ class _LoginScreenState extends State<LoginScreen> {
                             style: TextStyle(color: Colors.white),
                           )),
                       TextButton(
-                          onPressed: () {},
+                          onPressed: () {
+                            Navigator.pushNamed(context, 'reset');
+                          },
                           child: const Text(
                             "Não consegue conectar?",
                             style: TextStyle(color: Colors.white),
