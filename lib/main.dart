@@ -1,3 +1,4 @@
+import 'package:app_monster/screens/perfil_screen.dart';
 import 'package:app_monster/screens/register_screen.dart';
 import 'package:app_monster/screens/reset_screen.dart';
 import 'package:firebase_app_check/firebase_app_check.dart';
@@ -27,7 +28,8 @@ class MyApp extends StatelessWidget {
         'menu': (context) => MenuScreen(),
         'error': (context) => NoConnectionScreen(),
         'register': (context) => RegisterScreen(),
-        'reset': (context) => ResetScreen()
+        'reset': (context) => ResetScreen(),
+        'perfil': (context) => TelaPerfil()
       },
     );
   }

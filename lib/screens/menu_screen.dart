@@ -11,10 +11,14 @@ class MenuScreen extends StatefulWidget {
 class _MenuScreenState extends State<MenuScreen> {
   int _selectedIndex = 0; // Para controlar o BottomNavigationBar
 
-   final List<Widget> _pages = const [
-    Center(child: Text("Início", style: TextStyle(fontSize: 20, color: Colors.white))),
-    TelaPerfil(), // tela de perfil 
-    Center(child: Text("Configurações", style: TextStyle(fontSize: 20, color: Colors.white))),
+  final List<Widget> _pages = const [
+    Center(
+        child: Text("Início",
+            style: TextStyle(fontSize: 20, color: Colors.white))),
+    TelaPerfil(), // tela de perfil
+    Center(
+        child: Text("Configurações",
+            style: TextStyle(fontSize: 20, color: Colors.white))),
   ];
 
   void _onItemTapped(int index) {
@@ -26,11 +30,12 @@ class _MenuScreenState extends State<MenuScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFF0B062C), // Fundo escuro 
+      backgroundColor: const Color(0xFF0B062C), // Fundo escuro
 
       appBar: AppBar(
         title: const Text("Menu"),
-        backgroundColor: const Color(0xFF2C65B9), // Deixa o appBar com a mesma cor da barra inferior
+        backgroundColor: const Color(
+            0xFF2C65B9), // Deixa o appBar com a mesma cor da barra inferior
       ),
 
       body: _pages[_selectedIndex], // Mostra a tela conforme o índice
