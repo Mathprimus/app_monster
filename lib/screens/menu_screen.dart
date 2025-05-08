@@ -1,4 +1,5 @@
 import 'package:app_monster/screens/challenge_screen.dart';
+import 'package:app_monster/screens/ranking_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:app_monster/screens/perfil_screen.dart';
 import 'package:app_monster/screens/home_screen.dart';
@@ -17,8 +18,7 @@ class _MenuScreenState extends State<MenuScreen> {
   final List<Widget> _pages = const [
     HomeScreen(),
     ChallengeScreen(),
-    Center(child: Text("Favoritos", style: TextStyle(fontSize: 20, color: Colors.white))),
-    Center(child: Text("Ranking", style: TextStyle(fontSize: 20, color: Colors.white))),
+    RankingScreen(),
     TelaPerfil(),
   ];
 
@@ -70,9 +70,8 @@ class _MenuScreenState extends State<MenuScreen> {
           children: [
             _buildNavItem(Icons.home_outlined, 0),
             _buildNavItem(Icons.emoji_events_outlined, 1),
-            _buildNavItem(Icons.bookmark_border, 2),
-            _buildNavItem(Icons.bar_chart_outlined, 3),
-            _buildNavItem(Icons.person_outline, 4),
+            _buildNavItem(Icons.bar_chart_outlined, 2),
+            _buildNavItem(Icons.person_outline, 3),
           ],
         ),
       ),

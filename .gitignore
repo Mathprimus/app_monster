@@ -28,6 +28,9 @@ coverage/
 *.iml
 *.ipr
 *.iws
+*.bin
+**/*.bin
+
 
 # VS Code
 .vscode/

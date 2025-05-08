@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import '../widgets/custom_app_bar.dart';
-import '../widgets/challenge_card.dart';
+import '../widgets/ranking_item.dart';
 
-class ChallengeScreen extends StatelessWidget {
-  const ChallengeScreen({super.key});
+class GossipRankingScreen extends StatelessWidget {
+  const GossipRankingScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -43,20 +43,28 @@ class ChallengeScreen extends StatelessWidget {
             ),
           ),
           const SizedBox(height: 16),
-          // Lista de Desafios
+          // Lista de Rankings de Fofoqueiros
           Column(
             children: const [
-              ChallengeCard(
-                title: "Treino pesado",
-                description: "30 pontos",
-                points: 30,
-              ),
+              RankingItem(position: 1, name: "AnaFofoca", points: 150),
               SizedBox(height: 12),
-              ChallengeCard(
-                title: "Bora interagir",
-                description: "50 pontos",
-                points: 50,
-              ),
+              RankingItem(position: 2, name: "BetoTagarela", points: 120),
+              SizedBox(height: 12),
+              RankingItem(position: 3, name: "ClaraBoca", points: 90),
+              SizedBox(height: 12),
+              RankingItem(position: 4, name: "DudaFala", points: 80),
+              SizedBox(height: 12),
+              RankingItem(position: 5, name: "EduBafafa", points: 70),
+              SizedBox(height: 12),
+              RankingItem(position: 6, name: "FernandaBuzz", points: 60),
+              SizedBox(height: 12),
+              RankingItem(position: 7, name: "GabiFofo", points: 50),
+              SizedBox(height: 12),
+              RankingItem(position: 8, name: "HugoNews", points: 40),
+              SizedBox(height: 12),
+              RankingItem(position: 9, name: "IgorChat", points: 30),
+              SizedBox(height: 12),
+              RankingItem(position: 10, name: "JuliaGossip", points: 20),
             ],
           ),
         ],

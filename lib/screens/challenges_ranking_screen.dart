@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import '../widgets/custom_app_bar.dart';
-import '../widgets/challenge_card.dart';
+import '../widgets/ranking_item.dart';
 
-class ChallengeScreen extends StatelessWidget {
-  const ChallengeScreen({super.key});
+class ChallengesRankingScreen extends StatelessWidget {
+  const ChallengesRankingScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -43,20 +43,28 @@ class ChallengeScreen extends StatelessWidget {
             ),
           ),
           const SizedBox(height: 16),
-          // Lista de Desafios
+          // Lista de Rankings de Desafios
           Column(
             children: const [
-              ChallengeCard(
-                title: "Treino pesado",
-                description: "30 pontos",
-                points: 30,
-              ),
+              RankingItem(position: 1, name: "JoãoBiceps", points: 320),
               SizedBox(height: 12),
-              ChallengeCard(
-                title: "Bora interagir",
-                description: "50 pontos",
-                points: 50,
-              ),
+              RankingItem(position: 2, name: "CarlaFit", points: 280),
+              SizedBox(height: 12),
+              RankingItem(position: 3, name: "LucasXP", points: 250),
+              SizedBox(height: 12),
+              RankingItem(position: 4, name: "AnaPower", points: 230),
+              SizedBox(height: 12),
+              RankingItem(position: 5, name: "PedroLift", points: 210),
+              SizedBox(height: 12),
+              RankingItem(position: 6, name: "MarianaRun", points: 190),
+              SizedBox(height: 12),
+              RankingItem(position: 7, name: "FelipeGym", points: 170),
+              SizedBox(height: 12),
+              RankingItem(position: 8, name: "SofiaFit", points: 150),
+              SizedBox(height: 12),
+              RankingItem(position: 9, name: "RafaelCore", points: 130),
+              SizedBox(height: 12),
+              RankingItem(position: 10, name: "JuliaFlex", points: 110),
             ],
           ),
         ],

@@ -1,11 +1,15 @@
+import 'package:app_monster/screens/challenge_screen.dart';
 import 'package:app_monster/screens/perfil_screen.dart';
 import 'package:app_monster/screens/register_screen.dart';
 import 'package:app_monster/screens/reset_screen.dart';
+import 'package:app_monster/screens/ranking_screen.dart';
+import 'package:app_monster/screens/challenges_ranking_screen.dart';
+import 'package:app_monster/screens/gossip_ranking_screen.dart';
 import 'package:firebase_app_check/firebase_app_check.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:connectivity_plus/connectivity_plus.dart';
-import 'package:http/http.dart' as http; // Teste real de conexão
+import 'package:http/http.dart' as http;
 import 'package:app_monster/screens/login_screen.dart';
 import 'package:app_monster/screens/menu_screen.dart';
 
@@ -29,7 +33,11 @@ class MyApp extends StatelessWidget {
         'error': (context) => NoConnectionScreen(),
         'register': (context) => RegisterScreen(),
         'reset': (context) => ResetScreen(),
-        'perfil': (context) => TelaPerfil()
+        'perfil': (context) => TelaPerfil(),
+        'ranking': (context) => const RankingScreen(),
+        'challenges': (context) => const ChallengeScreen(),
+        'challenges-ranking': (context) => const ChallengesRankingScreen(),
+        'gossip-ranking': (context) => const GossipRankingScreen(),
       },
     );
   }
@@ -106,7 +114,7 @@ class _LoadingScreenState extends State<LoadingScreen> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 SizedBox(
-                  width: size.width * 0.8, // No máximo 80% da largura
+                  width: size.width * 0.8,
                   height: size.height * 0.5 > 250 ? 250 : size.height * 0.5,
                   child: Image.asset(
                     "assets/images/MonterRankingThumbs.png",
@@ -153,8 +161,7 @@ class NoConnectionScreen extends StatelessWidget {
             padding: EdgeInsets.symmetric(horizontal: size.width * 0.08),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
-              mainAxisSize: MainAxisSize
-                  .min, // Garante que os elementos não sejam empurrados para fora
+              mainAxisSize: MainAxisSize.min,
               children: [
                 Text(
                   "Sem conexão com a internet",
@@ -167,7 +174,7 @@ class NoConnectionScreen extends StatelessWidget {
                 ),
                 SizedBox(height: size.height * 0.02),
                 SizedBox(
-                  width: size.width * 0.8, // Limita o tamanho da imagem
+                  width: size.width * 0.8,
                   height: size.height * 0.5 > 250 ? 250 : size.height * 0.5,
                   child: Image.asset(
                     "assets/images/MonsterRankingSemConexao.png",

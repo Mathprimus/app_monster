@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class ChallengeCard extends StatefulWidget {
+class ChallengeCard extends StatelessWidget {
   final String title;
   final String description;
   final int points;
@@ -11,20 +11,6 @@ class ChallengeCard extends StatefulWidget {
     required this.description,
     required this.points,
   });
-
-  @override
-  State<ChallengeCard> createState() => _ChallengeCardState();
-}
-
-class _ChallengeCardState extends State<ChallengeCard> {
-  bool _isCompleted = false;
-
-  void _handleComplete() {
-    if (_isCompleted) return;
-    setState(() {
-      _isCompleted = true;
-    });
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -45,9 +31,9 @@ class _ChallengeCardState extends State<ChallengeCard> {
               borderRadius: BorderRadius.vertical(top: Radius.circular(16)),
             ),
           ),
-          // Conteúdo restante com espaço entre os itens
+          // Conteúdo restante
           SizedBox(
-            height: 128, // Altura restante (200px total - 72px da imagem)
+            height: 158, // Ajustado para 230px total - 72px da imagem
             child: Padding(
               padding: const EdgeInsets.all(12),
               child: Column(
@@ -58,16 +44,16 @@ class _ChallengeCardState extends State<ChallengeCard> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        widget.title,
+                        title,
                         style: const TextStyle(
                           fontSize: 18,
                           fontWeight: FontWeight.bold,
                           color: Colors.white,
                         ),
                       ),
-                      const SizedBox(height: 4),
+                      const SizedBox(height: 8),
                       Text(
-                        widget.description,
+                        description,
                         style: const TextStyle(fontSize: 14, color: Colors.white70),
                       ),
                     ],
@@ -76,21 +62,22 @@ class _ChallengeCardState extends State<ChallengeCard> {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text(
-                        "${widget.points} pts",
+                        "$points pts",
                         style: const TextStyle(color: Colors.amber, fontSize: 16),
                       ),
                       ElevatedButton(
-                        onPressed: _isCompleted ? null : _handleComplete,
+                        onPressed: () {
+                          Navigator.pushNamed(context, 'challenges');
+                        },
                         style: ElevatedButton.styleFrom(
-                          backgroundColor:
-                              _isCompleted ? Colors.green : Colors.blueAccent,
+                          backgroundColor: const Color(0xFF1393D7),
                           foregroundColor: Colors.white,
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(12),
                           ),
                           padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
                         ),
-                        child: Text(_isCompleted ? "Concluído ✔" : "Concluir"),
+                        child: const Text("Aceitar Desafio"),
                       ),
                     ],
                   ),

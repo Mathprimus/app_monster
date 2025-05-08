@@ -36,11 +36,14 @@ class _LoginScreenState extends State<LoginScreen> {
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
     return Container(
-      decoration: const BoxDecoration(
-        gradient: LinearGradient(
-          colors: [Color(0xFF0C0E10), Color(0xFF1393D7)],
-          begin: Alignment.topLeft,
-          end: Alignment.bottomRight,
+      decoration: BoxDecoration(
+        image: DecorationImage(
+          image: AssetImage("assets/images/Tela_de_Inicializacao.png"), // Substitua pelo caminho da sua imagem
+          fit: BoxFit.cover,
+          // colorFilter: ColorFilter.mode(
+          //   Colors.black.withOpacity(0.3), // Adiciona leve opacidade escura para melhor legibilidade
+          //   BlendMode.dstATop,
+          // ),
         ),
       ),
       child: GestureDetector(

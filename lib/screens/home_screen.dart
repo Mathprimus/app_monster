@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import '../widgets/ranking_card.dart';
-import '../widgets/desafio_card.dart';
+import '../widgets/challenge_card.dart';
 import '../widgets/custom_app_bar.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -10,7 +10,7 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: const CustomAppBar(),
-      backgroundColor: const Color(0xFF0B062C), // Fundo escuro como no mockup
+      backgroundColor: const Color(0xFF0B062C),
       body: ListView(
         children: [
           const Padding(
@@ -21,19 +21,41 @@ class HomeScreen extends StatelessWidget {
             ),
           ),
           SizedBox(
-            height: 270,
+            height: 320,
             child: ListView(
               scrollDirection: Axis.horizontal,
               padding: const EdgeInsets.symmetric(horizontal: 16),
-              children: const [
+              children: [
                 SizedBox(
                   width: 280,
-                  child: RankingCard(),
+                  child: RankingCard(
+                    title: "Top 3 - Desafios Concluídos",
+                    items: const [
+                      {'position': 1, 'name': "JoãoBiceps", 'points': 320},
+                      {'position': 2, 'name': "CarlaFit", 'points': 280},
+                      {'position': 3, 'name': "LucasXP", 'points': 250},
+                    ],
+                    buttonText: "Ver ranking completo",
+                    onButtonPressed: () {
+                      Navigator.pushNamed(context, 'challenges-ranking');
+                    },
+                  ),
                 ),
-                SizedBox(width: 12),
+                const SizedBox(width: 12),
                 SizedBox(
                   width: 280,
-                  child: RankingCard(),
+                  child: RankingCard(
+                    title: "Top 3 - Maiores Fofoqueiros",
+                    items: const [
+                      {'position': 1, 'name': "AnaFofoca", 'points': 150},
+                      {'position': 2, 'name': "BetoTagarela", 'points': 120},
+                      {'position': 3, 'name': "ClaraBoca", 'points': 90},
+                    ],
+                    buttonText: "Ver ranking completo",
+                    onButtonPressed: () {
+                      Navigator.pushNamed(context, 'gossip-ranking');
+                    },
+                  ),
                 ),
               ],
             ),
@@ -46,7 +68,7 @@ class HomeScreen extends StatelessWidget {
             ),
           ),
           SizedBox(
-            height: 270,
+            height: 255,
             child: ListView(
               scrollDirection: Axis.horizontal,
               padding: const EdgeInsets.symmetric(horizontal: 16),
@@ -55,7 +77,7 @@ class HomeScreen extends StatelessWidget {
                   width: 340,
                   child: ChallengeCard(
                     title: "Desafio Diário",
-                    description: "Faça 50 abdominais",
+                    description: "50 abdominais? Vamos, você consegue... ou será preguiça?",
                     points: 50,
                   ),
                 ),
@@ -64,7 +86,7 @@ class HomeScreen extends StatelessWidget {
                   width: 340,
                   child: ChallengeCard(
                     title: "Desafio Semanal",
-                    description: "Treine 4x na semana",
+                    description: "4 treinos? Não fuja, mostre que é forte!",
                     points: 100,
                   ),
                 ),
@@ -73,7 +95,7 @@ class HomeScreen extends StatelessWidget {
                   width: 340,
                   child: ChallengeCard(
                     title: "Desafio Mensal",
-                    description: "Complete 16 treinos",
+                    description: "16 treinos? Desafie-se ou fique só na conversa!",
                     points: 300,
                   ),
                 ),
