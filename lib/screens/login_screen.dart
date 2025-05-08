@@ -14,22 +14,22 @@ class _LoginScreenState extends State<LoginScreen> {
   TextEditingController senhaController = TextEditingController();
 
   void efetuaLogin() async {
-    FirebaseAuth auth = FirebaseAuth.instance;
+    // FirebaseAuth auth = FirebaseAuth.instance;
 
-    auth
-        .signInWithEmailAndPassword(
-            email: emailController.text, password: senhaController.text)
-        .then((firebaseUser) {
-      final SnackBar snackBar = SnackBar(
-          content: Text('Logado com sucesso!'), duration: Duration(seconds: 5));
-      ScaffoldMessenger.of(context).showSnackBar(snackBar);
+    // auth
+    //     .signInWithEmailAndPassword(
+    //         email: emailController.text, password: senhaController.text)
+    //     .then((firebaseUser) {
+    //   final SnackBar snackBar = SnackBar(
+    //       content: Text('Logado com sucesso!'), duration: Duration(seconds: 5));
+    //   ScaffoldMessenger.of(context).showSnackBar(snackBar);
       Navigator.pushNamed(context, 'menu');
 
-      emailController.clear();
-      senhaController.clear();
-    }).catchError((error) {
-      print("Deu erro: " + error.toString());
-    });
+  //     emailController.clear();
+  //     senhaController.clear();
+  //   }).catchError((error) {
+  //     print("Deu erro: " + error.toString());
+  //   });
   }
 
   @override

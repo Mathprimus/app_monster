@@ -1,0 +1,2 @@
+C:/Users/Lucas/Documents/Projetos/app_monster/android/app/.cxx/Debug/53263p29/arm64-v8a/CMakeFiles/edit_cache.dir
+C:/Users/Lucas/Documents/Projetos/app_monster/android/app/.cxx/Debug/53263p29/arm64-v8a/CMakeFiles/rebuild_cache.dir
