@@ -78,7 +78,6 @@ class HomeScreen extends StatelessWidget {
                   child: ChallengeCard(
                     title: "Desafio Diário",
                     description: "50 abdominais? Vamos, você consegue... ou será preguiça?",
-                    points: 50,
                   ),
                 ),
                 SizedBox(width: 12),
@@ -87,7 +86,6 @@ class HomeScreen extends StatelessWidget {
                   child: ChallengeCard(
                     title: "Desafio Semanal",
                     description: "4 treinos? Não fuja, mostre que é forte!",
-                    points: 100,
                   ),
                 ),
                 SizedBox(width: 12),
@@ -96,7 +94,6 @@ class HomeScreen extends StatelessWidget {
                   child: ChallengeCard(
                     title: "Desafio Mensal",
                     description: "16 treinos? Desafie-se ou fique só na conversa!",
-                    points: 300,
                   ),
                 ),
               ],

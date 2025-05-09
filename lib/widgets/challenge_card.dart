@@ -3,13 +3,11 @@ import 'package:flutter/material.dart';
 class ChallengeCard extends StatelessWidget {
   final String title;
   final String description;
-  final int points;
 
   const ChallengeCard({
     super.key,
     required this.title,
     required this.description,
-    required this.points,
   });
 
   @override
@@ -58,28 +56,22 @@ class ChallengeCard extends StatelessWidget {
                       ),
                     ],
                   ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text(
-                        "$points pts",
-                        style: const TextStyle(color: Colors.amber, fontSize: 16),
-                      ),
-                      ElevatedButton(
-                        onPressed: () {
-                          Navigator.pushNamed(context, 'challenges');
-                        },
-                        style: ElevatedButton.styleFrom(
-                          backgroundColor: const Color(0xFF1393D7),
-                          foregroundColor: Colors.white,
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(12),
-                          ),
-                          padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+                  Align(
+                    alignment: Alignment.centerRight,
+                    child: ElevatedButton(
+                      onPressed: () {
+                        Navigator.pushNamed(context, 'challenges');
+                      },
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: const Color(0xFF1393D7),
+                        foregroundColor: Colors.white,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(12),
                         ),
-                        child: const Text("Aceitar Desafio"),
+                        padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
                       ),
-                    ],
+                      child: const Text("Aceitar Desafio"),
+                    ),
                   ),
                 ],
               ),

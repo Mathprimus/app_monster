@@ -12,24 +12,46 @@ class LoginScreen extends StatefulWidget {
 class _LoginScreenState extends State<LoginScreen> {
   TextEditingController emailController = TextEditingController();
   TextEditingController senhaController = TextEditingController();
+  bool _obscurePassword = true; // Estado para controlar a visibilidade da senha
+  String? _errorMessage; // Estado para armazenar mensagens de erro
 
   void efetuaLogin() async {
     // FirebaseAuth auth = FirebaseAuth.instance;
 
-    // auth
-    //     .signInWithEmailAndPassword(
-    //         email: emailController.text, password: senhaController.text)
-    //     .then((firebaseUser) {
-    //   final SnackBar snackBar = SnackBar(
-    //       content: Text('Logado com sucesso!'), duration: Duration(seconds: 5));
-    //   ScaffoldMessenger.of(context).showSnackBar(snackBar);
-      Navigator.pushNamed(context, 'menu');
+    // try {
+    //   auth
+    //       .signInWithEmailAndPassword(
+    //           email: emailController.text, password: senhaController.text)
+    //       .then((firebaseUser) {
+    //     final SnackBar snackBar = SnackBar(
+    //         content: Text('Logado com sucesso!'), duration: Duration(seconds: 5));
+    //     ScaffoldMessenger.of(context).showSnackBar(snackBar);
+        Navigator.pushNamed(context, 'menu');
 
-  //     emailController.clear();
-  //     senhaController.clear();
-  //   }).catchError((error) {
-  //     print("Deu erro: " + error.toString());
-  //   });
+    //     emailController.clear();
+    //     senhaController.clear();
+    //     setState(() {
+    //       _errorMessage = null; // Limpa a mensagem de erro ao logar com sucesso
+    //     });
+    //   }).catchError((error) {
+    //     setState(() {
+    //       _errorMessage = error.message ?? "Erro desconhecido ao fazer login";
+    //     });
+    //     print("Deu erro: " + error.toString());
+    //   });
+    // } catch (e) {
+    //   setState(() {
+    //     _errorMessage = "Erro ao processar o login: $e";
+    //   });
+    //   print("Erro geral: $e");
+    // }
+    // setState(() { _errorMessage = "Erro de login simulado"; });
+  }
+
+  void _togglePasswordVisibility() {
+    setState(() {
+      _obscurePassword = !_obscurePassword;
+    });
   }
 
   @override
@@ -71,7 +93,14 @@ class _LoginScreenState extends State<LoginScreen> {
                   const SizedBox(height: 20),
                   _buildTextField(emailController, "E-mail", Icons.mail, false),
                   const SizedBox(height: 20),
-                  _buildTextField(senhaController, "Senha", Icons.lock, true),
+                  _buildTextField(senhaController, "Senha", Icons.lock, _obscurePassword),
+                  if (_errorMessage != null) ...[
+                    const SizedBox(height: 10),
+                    Text(
+                      _errorMessage!,
+                      style: const TextStyle(color: Colors.red, fontSize: 14),
+                    ),
+                  ],
                   const SizedBox(height: 30),
                   SizedBox(
                     width: double.infinity,
@@ -136,11 +165,42 @@ class _LoginScreenState extends State<LoginScreen> {
             hintText: hint,
             hintStyle: TextStyle(color: Colors.white),
             prefixIcon: Icon(icon, color: Colors.white),
+            suffixIcon: hint == "Senha"
+                ? IconButton(
+                    icon: Icon(
+                      _obscurePassword ? Icons.visibility : Icons.visibility_off,
+                      color: Colors.white,
+                    ),
+                    onPressed: _togglePasswordVisibility,
+                  )
+                : null,
             filled: true,
             fillColor: Color(0xFF3E7294).withAlpha((0.2 * 255).toInt()),
             border: OutlineInputBorder(
               borderRadius: BorderRadius.circular(10),
               borderSide: BorderSide.none,
+            ),
+            enabledBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(10),
+              borderSide: BorderSide(
+                color: _errorMessage != null ? Colors.red : Colors.transparent,
+                width: 2,
+              ),
+            ),
+            focusedBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(10),
+              borderSide: BorderSide(
+                color: _errorMessage != null ? Colors.red : const Color(0xFF3E7294),
+                width: 2,
+              ),
+            ),
+            errorBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(10),
+              borderSide: const BorderSide(color: Colors.red, width: 2),
+            ),
+            focusedErrorBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(10),
+              borderSide: const BorderSide(color: Colors.red, width: 2),
             ),
           ),
           style: const TextStyle(color: Colors.white),

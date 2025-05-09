@@ -5,27 +5,39 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
 
   @override
   Widget build(BuildContext context) {
-    return AppBar(
-      backgroundColor: const Color(0xFF1E88E5),
-      elevation: 0,
-      actions: [
-        Padding(
-          padding: const EdgeInsets.only(right: 16),
-          child: IconButton(
-            icon: const Icon(
-              Icons.account_circle,
-              color: Colors.white,
-              size: 48,
+    return PreferredSize(
+      preferredSize: const Size.fromHeight(120),
+      child: Container(
+        height: 120, // Altura fixa para garantir 120px
+        padding: const EdgeInsets.only(top: 40, left: 16, right: 16),
+        color: const Color.fromRGBO(54, 125, 201, 1), // Nova cor da barra
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.end,
+          children: [
+            GestureDetector(
+              onTap: () {
+                Navigator.pushNamed(context, 'perfil');
+              },
+              child: Container(
+                width: 48,
+                height: 48,
+                decoration: const BoxDecoration(
+                  shape: BoxShape.circle,
+                  color: Colors.grey,
+                ),
+                child: const Icon(
+                  Icons.person,
+                  color: Colors.white,
+                  size: 24,
+                ),
+              ),
             ),
-            onPressed: () {
-              // Navegar para a tela de perfil (a ser implementada)
-            },
-          ),
+          ],
         ),
-      ],
+      ),
     );
   }
 
   @override
-  Size get preferredSize => const Size.fromHeight(120); // Ajustado para 120px
+  Size get preferredSize => const Size.fromHeight(120);
 }
