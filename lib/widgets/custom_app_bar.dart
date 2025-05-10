@@ -8,12 +8,22 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
     return PreferredSize(
       preferredSize: const Size.fromHeight(120),
       child: Container(
-        height: 120, // Altura fixa para garantir 120px
+        height: 120,
         padding: const EdgeInsets.only(top: 40, left: 16, right: 16),
-        color: const Color.fromRGBO(54, 125, 201, 1), // Nova cor da barra
+        color: const Color.fromRGBO(54, 125, 201, 1),
         child: Row(
-          mainAxisAlignment: MainAxisAlignment.end,
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
+            IconButton(
+              icon: const Icon(
+                Icons.arrow_back,
+                color: Colors.white,
+                size: 26,
+              ),
+              onPressed: () {
+                Navigator.pop(context);
+              },
+            ),
             GestureDetector(
               onTap: () {
                 Navigator.pushNamed(context, 'perfil');

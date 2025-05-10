@@ -26,7 +26,7 @@ class _LoginScreenState extends State<LoginScreen> {
     //     final SnackBar snackBar = SnackBar(
     //         content: Text('Logado com sucesso!'), duration: Duration(seconds: 5));
     //     ScaffoldMessenger.of(context).showSnackBar(snackBar);
-        Navigator.pushNamed(context, 'menu');
+        Navigator.pushNamed(context, 'home');
 
     //     emailController.clear();
     //     senhaController.clear();

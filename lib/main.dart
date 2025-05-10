@@ -1,17 +1,17 @@
-import 'package:app_monster/screens/challenge_screen.dart';
 import 'package:app_monster/screens/perfil_screen.dart';
 import 'package:app_monster/screens/register_screen.dart';
 import 'package:app_monster/screens/reset_screen.dart';
 import 'package:app_monster/screens/ranking_screen.dart';
 import 'package:app_monster/screens/challenges_ranking_screen.dart';
 import 'package:app_monster/screens/gossip_ranking_screen.dart';
+import 'package:app_monster/screens/challenge_screen.dart';
+import 'package:app_monster/screens/home_screen.dart';
 import 'package:firebase_app_check/firebase_app_check.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:http/http.dart' as http;
 import 'package:app_monster/screens/login_screen.dart';
-import 'package:app_monster/screens/menu_screen.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -29,13 +29,13 @@ class MyApp extends StatelessWidget {
       routes: {
         'loading': (context) => LoadingScreen(),
         'login': (context) => LoginScreen(),
-        'menu': (context) => MenuScreen(),
+        'home': (context) => const HomeScreen(),
+        'challenges': (context) => const ChallengeScreen(),
+        'ranking': (context) => const RankingScreen(),
+        'perfil': (context) => TelaPerfil(),
         'error': (context) => NoConnectionScreen(),
         'register': (context) => RegisterScreen(),
         'reset': (context) => ResetScreen(),
-        'perfil': (context) => TelaPerfil(),
-        'ranking': (context) => const RankingScreen(),
-        'challenges': (context) => const ChallengeScreen(),
         'challenges-ranking': (context) => const ChallengesRankingScreen(),
         'gossip-ranking': (context) => const GossipRankingScreen(),
       },
