@@ -6,7 +6,7 @@ class TelaPerfil extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFF0B062C),
+      backgroundColor: const Color.fromRGBO(18, 52, 89, 1),
 
       body: Column(
         children: [
@@ -17,7 +17,7 @@ class TelaPerfil extends StatelessWidget {
               Container(
                 height: 120, 
                 width: double.infinity,
-                color: const Color(0xFF2C65B9),
+                color: const Color.fromRGBO(54, 125, 201, 1),
               ),
 
               Positioned(
@@ -29,7 +29,7 @@ class TelaPerfil extends StatelessWidget {
                     padding:
                         const EdgeInsets.all(4),
                     decoration: BoxDecoration(
-                      color: const Color(0xFF2C65B9), 
+                      color: const Color.fromRGBO(54, 125, 201, 1), 
                       shape: BoxShape.circle, 
                     ),
                     child: CircleAvatar(

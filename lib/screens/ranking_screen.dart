@@ -9,7 +9,7 @@ class RankingScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: const CustomAppBar(),
-      backgroundColor: const Color(0xFF0B062C),
+      backgroundColor: const Color.fromRGBO(18, 52, 89, 1),
       body: ListView(
         padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
         children: [

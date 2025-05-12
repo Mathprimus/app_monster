@@ -10,14 +10,14 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: const CustomAppBar(),
-      backgroundColor: const Color(0xFF0B062C),
+      backgroundColor: const Color.fromRGBO(18, 52, 89, 1),
       body: ListView(
         children: [
           const Padding(
             padding: EdgeInsets.all(16),
             child: Text(
               "Rankings",
-              style: TextStyle(fontSize: 20, color: Colors.white),
+              style: TextStyle(fontSize: 24, color: Colors.white, fontWeight: FontWeight.bold), // Adicionado negrito
             ),
           ),
           SizedBox(
@@ -27,7 +27,7 @@ class HomeScreen extends StatelessWidget {
               padding: const EdgeInsets.symmetric(horizontal: 16),
               children: [
                 SizedBox(
-                  width: 280,
+                  width: 340,
                   child: RankingCard(
                     title: "Top 3 - Desafios Concluídos",
                     items: const [
@@ -37,13 +37,13 @@ class HomeScreen extends StatelessWidget {
                     ],
                     buttonText: "Ver ranking completo",
                     onButtonPressed: () {
-                      Navigator.pushNamed(context, 'challenges-ranking');
+                      Navigator.pushNamed(context, 'ranking');
                     },
                   ),
                 ),
                 const SizedBox(width: 12),
                 SizedBox(
-                  width: 280,
+                  width: 340,
                   child: RankingCard(
                     title: "Top 3 - Maiores Fofoqueiros",
                     items: const [
@@ -53,7 +53,7 @@ class HomeScreen extends StatelessWidget {
                     ],
                     buttonText: "Ver ranking completo",
                     onButtonPressed: () {
-                      Navigator.pushNamed(context, 'gossip-ranking');
+                      Navigator.pushNamed(context, 'ranking');
                     },
                   ),
                 ),
@@ -64,7 +64,7 @@ class HomeScreen extends StatelessWidget {
             padding: EdgeInsets.all(16),
             child: Text(
               "Desafios",
-              style: TextStyle(fontSize: 20, color: Colors.white),
+              style: TextStyle(fontSize: 24, color: Colors.white, fontWeight: FontWeight.bold), // Adicionado negrito
             ),
           ),
           SizedBox(
@@ -78,6 +78,7 @@ class HomeScreen extends StatelessWidget {
                   child: ChallengeCard(
                     title: "Desafio Diário",
                     description: "50 abdominais? Vamos, você consegue... ou será preguiça?",
+                    imagePath: "assets/images/desafio_diario.png",
                   ),
                 ),
                 SizedBox(width: 12),
@@ -86,6 +87,7 @@ class HomeScreen extends StatelessWidget {
                   child: ChallengeCard(
                     title: "Desafio Semanal",
                     description: "4 treinos? Não fuja, mostre que é forte!",
+                    imagePath: "assets/images/desafio_semanal.png",
                   ),
                 ),
                 SizedBox(width: 12),
@@ -94,6 +96,7 @@ class HomeScreen extends StatelessWidget {
                   child: ChallengeCard(
                     title: "Desafio Mensal",
                     description: "16 treinos? Desafie-se ou fique só na conversa!",
+                    imagePath: "assets/images/desafio_mensal.png",
                   ),
                 ),
               ],

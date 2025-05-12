@@ -14,52 +14,66 @@ class RankingItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Color backgroundColor;
-    Color textColor = Colors.white;
+    const backgroundColor = Color.fromRGBO(31, 62, 95, 1); // Fundo para todos os itens
+    const textColor = Colors.white;
 
-    // Diferenciação visual para o top 3
-    if (position == 1) {
-      backgroundColor = Colors.yellow.shade700; // Ouro para 1º
-    } else if (position == 2) {
-      backgroundColor = Colors.grey.shade400; // Prata para 2º
-    } else if (position == 3) {
-      backgroundColor = Colors.brown.shade400; // Bronze para 3º
-    } else {
-      backgroundColor = Colors.white10; // Cor padrão para as outras posições
-    }
+    // Configuração do stroke interno com degradê para o top 3
+    final isTop3 = position <= 3;
+    final borderDecoration = isTop3
+        ? BoxDecoration(
+            border: Border.all(
+              width: 1, // Largura do stroke interno
+              color: Colors.transparent, // Necessário para o Container interno criar o efeito
+            ),
+            borderRadius: BorderRadius.circular(9),
+            gradient: const LinearGradient(
+              colors: [
+                Color.fromRGBO(54, 125, 201, 1), // #367DC9
+                Colors.white,
+              ],
+              begin: Alignment.topRight,
+              end: Alignment.bottomLeft,
+            ),
+          )
+        : BoxDecoration(
+            borderRadius: BorderRadius.circular(9),
+          );
 
     return Container(
-      padding: const EdgeInsets.all(12),
-      decoration: BoxDecoration(
-        color: backgroundColor,
-        borderRadius: BorderRadius.circular(12),
-      ),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Text(
-            '#$position',
-            style: TextStyle(
-              fontSize: 16,
-              fontWeight: FontWeight.bold,
-              color: textColor,
+      decoration: borderDecoration,
+      child: Container(
+        padding: const EdgeInsets.all(12),
+        decoration: BoxDecoration(
+          color: backgroundColor,
+          borderRadius: BorderRadius.circular(9), // Ajustado para o stroke interno de 3px
+        ),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Text(
+              '#$position',
+              style: const TextStyle(
+                fontSize: 16,
+                fontWeight: FontWeight.bold,
+                color: textColor,
+              ),
             ),
-          ),
-          Text(
-            name,
-            style: TextStyle(
-              fontSize: 16,
-              color: textColor,
+            Text(
+              name,
+              style: const TextStyle(
+                fontSize: 16,
+                color: textColor,
+              ),
             ),
-          ),
-          Text(
-            '$points pts',
-            style: TextStyle(
-              fontSize: 16,
-              color: textColor,
+            Text(
+              '$points pts',
+              style: const TextStyle(
+                fontSize: 16,
+                color: textColor,
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

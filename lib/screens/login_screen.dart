@@ -58,14 +58,15 @@ class _LoginScreenState extends State<LoginScreen> {
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
     return Container(
-      decoration: BoxDecoration(
-        image: DecorationImage(
-          image: AssetImage("assets/images/Tela_de_Inicializacao.png"), // Substitua pelo caminho da sua imagem
-          fit: BoxFit.cover,
-          // colorFilter: ColorFilter.mode(
-          //   Colors.black.withOpacity(0.3), // Adiciona leve opacidade escura para melhor legibilidade
-          //   BlendMode.dstATop,
-          // ),
+      decoration: const BoxDecoration(
+        gradient: LinearGradient(
+          colors: [
+            Color.fromRGBO(18, 52, 89, 1),
+            Color.fromRGBO(11, 37, 72, 1),
+            Color.fromRGBO(9, 33, 55, 1),
+          ],
+          begin: Alignment.topRight,
+          end: Alignment.bottomLeft,
         ),
       ),
       child: GestureDetector(
@@ -112,7 +113,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(10),
                         ),
-                        elevation: 5,
+                        elevation: 0, // Remove a sombra
                       ),
                       child: const Text("Login",
                           style: TextStyle(

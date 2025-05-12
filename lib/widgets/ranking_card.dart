@@ -20,8 +20,8 @@ class RankingCard extends StatelessWidget {
     return SizedBox(
       height: 320, // Altura fixa para consistência
       child: Card(
-        color: Colors.white10,
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+        color: const Color.fromARGB(255, 15, 44, 75),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(9)),
         margin: const EdgeInsets.symmetric(vertical: 12),
         child: Padding(
           padding: const EdgeInsets.all(16),
@@ -51,18 +51,22 @@ class RankingCard extends StatelessWidget {
                   );
                 }).toList(),
               ),
-              ElevatedButton(
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.blueAccent,
-                  foregroundColor: Colors.white,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(12),
+              Align(
+                    alignment: Alignment.centerLeft,
+                    child: ElevatedButton(
+                      onPressed: onButtonPressed,
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: const Color(0xFF1393D7),
+                        foregroundColor: Colors.white,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(20),
+                        ),
+                        // minimumSize: const Size(double.infinity, 36),
+                        padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+                      ),
+                      child: Text(buttonText),
+                    ),
                   ),
-                  minimumSize: const Size(double.infinity, 36),
-                ),
-                onPressed: onButtonPressed,
-                child: Text(buttonText),
-              ),
             ],
           ),
         ),

@@ -100,9 +100,13 @@ class _LoadingScreenState extends State<LoadingScreen> {
     return Container(
       decoration: const BoxDecoration(
         gradient: LinearGradient(
-          colors: [Color(0xFF0C0E10), Color(0xFF1393D7)],
-          begin: Alignment.topLeft,
-          end: Alignment.bottomRight,
+          colors: [
+            Color.fromRGBO(18, 52, 89, 1),
+            Color.fromRGBO(11, 37, 72, 1),
+            Color.fromRGBO(9, 33, 55, 1),
+          ],
+          begin: Alignment.topRight,
+          end: Alignment.bottomLeft,
         ),
       ),
       child: Scaffold(
