@@ -1,3 +1,5 @@
+import 'package:app_monster/provider/user_provider.dart';
+import 'package:app_monster/screens/challenge_detail_screen.dart';
 import 'package:app_monster/screens/perfil_screen.dart';
 import 'package:app_monster/screens/register_screen.dart';
 import 'package:app_monster/screens/reset_screen.dart';
@@ -12,38 +14,55 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:http/http.dart' as http;
 import 'package:app_monster/screens/login_screen.dart';
+import 'package:provider/provider.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
   await FirebaseAppCheck.instance.activate();
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      initialRoute: 'loading',
-      routes: {
-        'loading': (context) => LoadingScreen(),
-        'login': (context) => LoginScreen(),
-        'home': (context) => const HomeScreen(),
-        'challenges': (context) => const ChallengeScreen(),
-        'ranking': (context) => const RankingScreen(),
-        'perfil': (context) => TelaPerfil(),
-        'error': (context) => NoConnectionScreen(),
-        'register': (context) => RegisterScreen(),
-        'reset': (context) => ResetScreen(),
-        'challenges-ranking': (context) => const ChallengesRankingScreen(),
-        'gossip-ranking': (context) => const GossipRankingScreen(),
-      },
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (_) => UserProvider()),
+      ],
+      child: MaterialApp(
+        debugShowCheckedModeBanner: false,
+        initialRoute: 'loading',
+        routes: {
+          'loading': (context) => const LoadingScreen(),
+          'login': (context) => const LoginScreen(),
+          'home': (context) => const HomeScreen(),
+          'challenges': (context) => const ChallengeScreen(),
+          'ranking': (context) => const RankingScreen(),
+          'perfil': (context) => const TelaPerfil(),
+          'error': (context) => const NoConnectionScreen(),
+          'register': (context) => RegisterScreen(),
+          'reset': (context) => ResetScreen(),
+          'challenges-ranking': (context) => const ChallengesRankingScreen(),
+          'gossip-ranking': (context) => const GossipRankingScreen(),
+          'challenge-detail': (context) => const ChallengeDetailScreen(
+            title: '',
+            description: '',
+            points: 0,
+            imagePath: '',
+            challengeType: '',
+          ),
+        },
+      ),
     );
   }
 }
 
 class LoadingScreen extends StatefulWidget {
+  const LoadingScreen({super.key});
+
   @override
   _LoadingScreenState createState() => _LoadingScreenState();
 }
@@ -59,7 +78,7 @@ class _LoadingScreenState extends State<LoadingScreen> {
     try {
       final response = await http
           .get(Uri.parse('https://www.google.com'))
-          .timeout(Duration(seconds: 3));
+          .timeout(const Duration(seconds: 3));
       if (response.statusCode == 200) {
         print("✅ Conexão com a internet confirmada!");
         return true;
@@ -83,7 +102,7 @@ class _LoadingScreenState extends State<LoadingScreen> {
           await _checkRealInternetConnection(); // Teste real da internet
     }
 
-    Future.delayed(Duration(seconds: 1), () {
+    Future.delayed(const Duration(seconds: 1), () {
       if (isConnected) {
         print("🔄 Navegando para a tela de login...");
         Navigator.pushReplacementNamed(context, 'login');
@@ -125,10 +144,10 @@ class _LoadingScreenState extends State<LoadingScreen> {
                     fit: BoxFit.contain,
                   ),
                 ),
-                CircularProgressIndicator(
+                const CircularProgressIndicator(
                   color: Colors.white,
                 ),
-                SizedBox(height: 20),
+                const SizedBox(height: 20),
                 Text(
                   "Verificando conexão...",
                   style: TextStyle(
@@ -147,6 +166,8 @@ class _LoadingScreenState extends State<LoadingScreen> {
 }
 
 class NoConnectionScreen extends StatelessWidget {
+  const NoConnectionScreen({super.key});
+
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;

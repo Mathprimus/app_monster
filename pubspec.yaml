@@ -46,6 +46,7 @@ dependencies:
   brasil_fields: ^1.17.0
   emailjs: ^4.0.0
   shared_preferences: ^2.5.2
+  provider: ^6.1.2
 
 dev_dependencies:
   flutter_test:

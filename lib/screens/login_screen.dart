@@ -16,36 +16,60 @@ class _LoginScreenState extends State<LoginScreen> {
   String? _errorMessage; // Estado para armazenar mensagens de erro
 
   void efetuaLogin() async {
-    // FirebaseAuth auth = FirebaseAuth.instance;
+    FirebaseAuth auth = FirebaseAuth.instance;
 
-    // try {
-    //   auth
-    //       .signInWithEmailAndPassword(
-    //           email: emailController.text, password: senhaController.text)
-    //       .then((firebaseUser) {
-    //     final SnackBar snackBar = SnackBar(
-    //         content: Text('Logado com sucesso!'), duration: Duration(seconds: 5));
-    //     ScaffoldMessenger.of(context).showSnackBar(snackBar);
+    try {
+      auth
+          .signInWithEmailAndPassword(
+              email: emailController.text, password: senhaController.text)
+          .then((firebaseUser) {
+        // SnackBar estilizado
+        final SnackBar snackBar = SnackBar(
+          content: Row(
+            mainAxisSize: MainAxisSize.min,
+            children: const [
+              Icon(Icons.check_circle, color: Colors.white, size: 24),
+              SizedBox(width: 12),
+              Text(
+                "Logado com sucesso!",
+                style: TextStyle(
+                  fontSize: 16,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.white,
+                ),
+              ),
+            ],
+          ),
+          backgroundColor: const Color(0xFF2E7D32), // Verde escuro
+          elevation: 6,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(10),
+          ),
+          behavior: SnackBarBehavior.floating,
+          margin: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+          duration: const Duration(seconds: 3),
+          dismissDirection: DismissDirection.horizontal,
+        );
+        ScaffoldMessenger.of(context).showSnackBar(snackBar);
         Navigator.pushNamed(context, 'home');
 
-    //     emailController.clear();
-    //     senhaController.clear();
-    //     setState(() {
-    //       _errorMessage = null; // Limpa a mensagem de erro ao logar com sucesso
-    //     });
-    //   }).catchError((error) {
-    //     setState(() {
-    //       _errorMessage = error.message ?? "Erro desconhecido ao fazer login";
-    //     });
-    //     print("Deu erro: " + error.toString());
-    //   });
-    // } catch (e) {
-    //   setState(() {
-    //     _errorMessage = "Erro ao processar o login: $e";
-    //   });
-    //   print("Erro geral: $e");
-    // }
-    // setState(() { _errorMessage = "Erro de login simulado"; });
+        emailController.clear();
+        senhaController.clear();
+        setState(() {
+          _errorMessage = null; // Limpa a mensagem de erro ao logar com sucesso
+        });
+      }).catchError((error) {
+        setState(() {
+          _errorMessage = error.message ?? "Erro desconhecido ao fazer login";
+        });
+        print("Deu erro: " + error.toString());
+      });
+    } catch (e) {
+      setState(() {
+        _errorMessage = "Erro ao processar o login: $e";
+      });
+      print("Erro geral: $e");
+    }
   }
 
   void _togglePasswordVisibility() {

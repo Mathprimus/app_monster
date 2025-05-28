@@ -110,6 +110,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
         "uf": ufController.text,
         "complemento": complementoController.text,
         "dataCadastro": FieldValue.serverTimestamp(),
+        "pontos": 0,
       });
 
       ScaffoldMessenger.of(context).showSnackBar(
